@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Horizonte Travel - Agencia de Viajes (`viajes-roberto-velasquez-pfy2202`)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web desarrollada en **React** para la actividad sumativa de la Semana 5 de **Desarrollo Frontend II (PFY2202)** en Duoc UC. Permite explorar destinos turísticos internacionales, consultar vuelos y hoteles disponibles y armar un itinerario de viaje con cálculo dinámico de presupuesto.
 
-## Available Scripts
+## Enlace de Despliegue (GitHub Pages)
+- **URL Pública:** https://rvelur.github.io/viajes-roberto-velasquez-pfy2202
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Tecnologías y Versiones Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React:** `19.x` (`react` y `react-dom`)
+- **React Router DOM (`HashRouter`):** `7.x` — Navegación SPA fluida entre la vista de destinos (`/`) y el detalle por destino (`/destino/:id`).
+- **Apollo Client:** `^3.11.0` y **GraphQL:** `16.x` — Ejecución de consultas `gql` mediante `useQuery` para obtener vuelos y hoteles por destino.
+- **Mock Service Worker (MSW):** `2.15.0` — Backend mock que intercepta simultáneamente peticiones **REST** (`GET /api/destinos`) y **GraphQL** (`GetDestinationDetails`).
+- **GitHub Pages (`gh-pages`):** Despliegue de la aplicación en producción.
+- **HTML5, CSS3 y JavaScript (ES6+):** Diseño responsivo adaptable a escritorio, tablet y móvil mediante CSS Grid, Flexbox y Media Queries.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Funcionalidades Principales
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Exploración y Filtrado de Destinos (API REST Mock):**
+   - Listado dinámico de destinos turísticos con país, descripción, fotografía y actividades populares.
+   - Filtro interactivo por país mediante manejo de estado con `useState` y `useEffect`.
+2. **Consulta de Vuelos y Hoteles por Destino (API GraphQL Mock):**
+   - Visualización detallada de aerolíneas, rutas, fechas, precios y disponibilidad de asientos.
+   - Visualización de hoteles con categoría, fechas disponibles, tarifa por noche y habitaciones disponibles.
+3. **Planificador de Itinerario y Validaciones:**
+   - Selección interactiva de vuelo y hotel con cálculo automático del presupuesto total en USD.
+   - Validación en tiempo real del campo de cantidad de noches (impide valores menores a `1` y muestra alerta si el campo queda vacío).
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Estructura del Proyecto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```text
+viajes-roberto-velasquez-pfy2202/
+├── public/
+│   ├── index.html
+│   └── mockServiceWorker.js       # Service Worker de MSW
+├── src/
+│   ├── components/
+│   │   ├── DestinationCard.js     # Tarjeta reutilizable de destino (REST)
+│   │   ├── FlightCard.js          # Tarjeta reutilizable de vuelo (GraphQL)
+│   │   ├── HotelCard.js           # Tarjeta reutilizable de hotel (GraphQL)
+│   │   ├── Navbar.js              # Barra de navegación principal
+│   │   └── TripSummary.js         # Resumen de itinerario y cálculo de presupuesto
+│   ├── graphql/
+│   │   └── queries.js             # Definición de consultas GraphQL
+│   ├── mocks/
+│   │   ├── browser.js             # Configuración del worker MSW
+│   │   └── handlers.js            # Manejadores REST y GraphQL simulados
+│   ├── pages/
+│   │   ├── HomePage.js            # Listado y filtro de destinos (REST)
+│   │   └── DestinationDetail.js   # Detalle de vuelos y hoteles por destino (GraphQL)
+│   ├── App.css                    # Estilos globales y responsivos
+│   ├── App.js                     # Configuración de rutas con React Router
+│   └── index.js                   # Inicialización de MSW y ApolloProvider
+├── package.json
+└── README.md
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Requisitos Previos, Instalación y Ejecución
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Requisitos Previos
+- **Node.js** (v18 o superior) y **npm** instalados en el sistema.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Pasos para Instalar y Ejecutar en Local
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/rvelur/viajes-roberto-velasquez-pfy2202.git](https://github.com/rvelur/viajes-roberto-velasquez-pfy2202.git)
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Ingresar a la carpeta del proyecto:**
+   ```bash
+   cd viajes-roberto-velasquez-pfy2202
+   ```
 
-## Learn More
+3. **Instalar todas las dependencias:**
+   ```bash
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Ejecutar la aplicación en modo desarrollo:**
+   ```bash
+   npm start
+   ```
+   La aplicación se abrirá automáticamente en el navegador en `http://localhost:3000/viajes-roberto-velasquez-pfy2202/`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. **Generar compilación de producción (opcional):**
+   ```bash
+   npm run build
+   ```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Pruebas de Compatibilidad en Navegadores
 
-### Analyzing the Bundle Size
+Se realizaron pruebas funcionales, de intercepción de peticiones (REST/GraphQL con MSW) y de diseño responsivo en los siguientes navegadores:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Google Chrome:** Carga correcta de destinos vía REST, consulta de vuelos y hoteles vía GraphQL, validación de cantidad de noches y adaptación responsiva en móvil y escritorio sin errores en consola.
+- **Microsoft Edge:** Navegación fluida entre rutas con React Router, filtrado por país y cálculo dinámico del presupuesto operativos.
+- **Mozilla Firefox:** Registro correcto del Service Worker (`mockServiceWorker.js`), renderizado de componentes y confirmación de itinerario sin fallos.

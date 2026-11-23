@@ -1,17 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import './App.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const basePath = process.env.PUBLIC_URL || '';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+async function startApp() {
+  // Asegura la barra final (/viajes-pfy2202/) para que el Service Worker de MSW tenga alcance
+  if (basePath && window.location.pathname === basePath) {
+    window.location.replace(`${basePath}/${window.location.search}${window.location.hash}`);
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser');
+  await worker.start({
+    serviceWorker: {
+      url: `${basePath}/mockServiceWorker.js`
+    },
+    onUnhandledRequest: 'bypass'
+  });
+
+  const client = new ApolloClient({
+    uri: `${basePath}/graphql`,
+    cache: new InMemoryCache()
+  });
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </React.StrictMode>
+  );
+}
+
+startApp();
