@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/viajes-roberto-velasquez-pfy2202/static/css/main.dce23b9c.css",
+    "main.js": "/viajes-roberto-velasquez-pfy2202/static/js/main.1606b3eb.js",
+    "static/js/209.0f3b6db0.chunk.js": "/viajes-roberto-velasquez-pfy2202/static/js/209.0f3b6db0.chunk.js",
+    "static/js/540.f7612ace.chunk.js": "/viajes-roberto-velasquez-pfy2202/static/js/540.f7612ace.chunk.js",
+    "static/js/966.1ace4d0f.chunk.js": "/viajes-roberto-velasquez-pfy2202/static/js/966.1ace4d0f.chunk.js",
+    "index.html": "/viajes-roberto-velasquez-pfy2202/index.html",
+    "main.dce23b9c.css.map": "/viajes-roberto-velasquez-pfy2202/static/css/main.dce23b9c.css.map",
+    "main.1606b3eb.js.map": "/viajes-roberto-velasquez-pfy2202/static/js/main.1606b3eb.js.map",
+    "209.0f3b6db0.chunk.js.map": "/viajes-roberto-velasquez-pfy2202/static/js/209.0f3b6db0.chunk.js.map",
+    "540.f7612ace.chunk.js.map": "/viajes-roberto-velasquez-pfy2202/static/js/540.f7612ace.chunk.js.map",
+    "966.1ace4d0f.chunk.js.map": "/viajes-roberto-velasquez-pfy2202/static/js/966.1ace4d0f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dce23b9c.css",
+    "static/js/main.1606b3eb.js"
+  ]
+}
